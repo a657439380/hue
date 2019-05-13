@@ -661,6 +661,8 @@ def display(request, path):
     if mode == "binary":
         xxd_out = list(xxd.xxd(offset, contents, BYTES_PER_LINE, BYTES_PER_SENTENCE))
 
+    if path and path[-1] == '/': # With Knox we need to end URLs with a slash. posixpath.dirname looks at the last slash to determine dirname and assume files don't end with slash
+      path = path[:-1]
     dirname = posixpath.dirname(path)
     # Start with index-like data:
     stats = request.fs.stats(path)

@@ -20,7 +20,7 @@ from jobsub import views as jobsub_views
 
 urlpatterns = [
   # The base view is the "list" view, which we alias as /
-  url(r'^$', jobsub_views.list_designs),
+  url(r'^/?$', jobsub_views.list_designs),
 
   # Not available on Hue 4
   url(r'^not_available$', jobsub_views.not_available),

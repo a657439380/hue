@@ -23,7 +23,7 @@ from beeswax import api as beeswax_api
 
 # Views
 urlpatterns = [
-  url(r'^$', rdbms_views.index, name='index'),
+  url(r'^/?$', rdbms_views.index, name='index'),
   url(r'^execute/?$', rdbms_views.execute_query, name='execute_query'),
   url(r'^execute/design/(?P<design_id>\d+)$', rdbms_views.execute_query, name='execute_design'),
   url(r'^execute/query/(?P<query_history_id>\d+)$', rdbms_views.execute_query, name='watch_query_history')

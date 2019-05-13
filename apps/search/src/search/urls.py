@@ -22,14 +22,14 @@ from dashboard import api as dashboard_api
 
 
 urlpatterns = [
-  url(r'^install_examples$', search_views.install_examples, name='install_examples'),
+  url(r'^install_examples/?$', search_views.install_examples, name='install_examples'),
 ]
 
 
 # Those are all deprecated and dashboard.urls.py is the new reference.
 
 urlpatterns += [
-  url(r'^$', dashboard_views.index, name='index'),
+  url(r'^/?$', dashboard_views.index, name='index'),
   url(r'^m$', dashboard_views.index_m, name='index_m'),
   url(r'^save$', dashboard_views.save, name='save'),
   url(r'^new_search', dashboard_views.new_search, name='new_search'),

@@ -16,13 +16,12 @@
 <%!
 from desktop import conf
 from desktop.lib.i18n import smart_unicode
+from desktop.lib.django_mako import hue_base, hue_base_webpack
 from django.utils.translation import ugettext as _
 from metadata.conf import has_optimizer, OPTIMIZER
 
 home_url = url('desktop_views_home')
 from desktop.conf import USE_NEW_EDITOR
-
-from webpack_loader.templatetags.webpack_loader import render_bundle
 
 if USE_NEW_EDITOR.get():
   home_url = url('desktop_views_home2')
@@ -99,17 +98,17 @@ if USE_NEW_EDITOR.get():
     var _UA = navigator.userAgent.toLowerCase();
     for (var i = 1; i < 7; i++) {
       if (_UA.indexOf("firefox/" + i + ".") > -1) {
-        location.href = "${ url('desktop_views_unsupported') }";
+        huePubSub.publish('open.link', "${ url('desktop_views_unsupported') }");
       }
     }
 
     // check for IE document modes
     if (document.documentMode && document.documentMode < 9){
-      location.href = "${ url('desktop_views_unsupported') }";
+      huePubSub.publish('open.link', "${ url('desktop_views_unsupported') }");
     }
   </script>
 
-  ${ render_bundle('hue') | n,unicode }
+  <script src="${ hue_base_webpack('hue') }"></script>
 
   <script src="${ static('desktop/ext/js/jquery/plugins/jquery.touchSwipe.min.js') }"></script>
   <script src="${ static('desktop/js/bootstrap-typeahead-touchscreen.js') }"></script>
@@ -123,7 +122,7 @@ if USE_NEW_EDITOR.get():
   <script src="${ static('desktop/js/ace/ext-language_tools.js') }"></script>
   <script src="${ static('desktop/js/ace.extended.js') }"></script>
   <script>
-    ace.config.set("basePath", "/static/desktop/js/ace");
+    ace.config.set("basePath", "${ static('desktop/js/ace') }");
   </script>
 
   <script type="text/javascript">

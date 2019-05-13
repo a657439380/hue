@@ -19,7 +19,7 @@ from django.conf.urls import url
 from zookeeper import views as zookeeper_views
 
 urlpatterns = [
-  url(r'^$', zookeeper_views.index, name='index'),
+  url(r'^/?$', zookeeper_views.index, name='index'),
   url(r'view/(?P<id>\w+)$', zookeeper_views.view, name='view'),
   url(r'clients/(?P<id>\w+)/(?P<host>.+)$', zookeeper_views.clients, name='clients'),
   url(r'tree/(?P<id>\w+)/(?P<path>.+)$', zookeeper_views.tree, name='tree'),

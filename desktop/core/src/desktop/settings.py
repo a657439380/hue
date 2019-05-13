@@ -127,6 +127,7 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 
 # For Django admin interface
+HUE_BASE_URL = ''
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'build', 'static')
